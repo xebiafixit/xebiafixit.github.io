@@ -1,0 +1,62 @@
+---
+layout: post-layout
+---
+<div class="container" id="main_container" style="background: #fff; box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);">
+  <div class="single-post">
+    <div class="container">
+      <div class="post-item">
+        {% include addthis.html %}
+          <div class="post-body">
+            <div class="row author-details">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a class="pull-right" href="{{site.url}}/author/{{page.author}}">{{ page.author }}</a>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <span class="date pull-right">{{ page.date | date_to_long_string }}</span>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a class="post_comments_count" href="{{ post.url }}#disqus_thread"></a>
+              </div>
+            </div>
+            <div class="content">
+                {{ page.content | markdownify }}
+            </div>
+          </div>
+          <div class="row" id="post-tags-section">
+            <div class="col-lg-6">
+              <div class="post-tags">
+                <p><i class="fa fa-tags"></i>Tags</p>
+                {% for tag in page.tags %}
+                <a href="{{site.url}}/tag/{{ tag }}" class="tag">{{tag}}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="post-socials">
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{site.xebia_url}}{{page.url}}&t={{page.title}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?original_referer={{site.xebia_url}}{{page.url}}&text={{page.title}}&url={{site.xebia_url}}{{page.url}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://plus.google.com/share?url={{site.xebia_url}}{{page.url}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div id="blog-pagination">
+      <ul>
+      	{% if page.previous.url %}
+        <li class="prev"><a href="{{site.url}}{{page.previous.url}}"><i class="fa fa-angle-left"></i><span>Prev</span></a></li>
+        {% endif %}
+        {% if page.previous.url or page.next.url%}
+        <li class="separator"></li>
+        {% endif %}
+        {% if page.next.url %}
+        <li class="next"><a href="{{site.url}}{{page.next.url}}"><span>Next</span><i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <hr>
+    {% include disqus.html %}
+    <hr>
+  </div>
+</div>

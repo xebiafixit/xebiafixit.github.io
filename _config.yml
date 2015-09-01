@@ -1,0 +1,25 @@
+# Site settings
+title: Xebia Blog
+company: Xebia
+email: blogww@xebia.com
+description: "Bug/Error fixes"
+baseurl: ""
+url: ""
+xebia_url: "http://fixit.xebia.in"
+twitter_username: XebiaIndia
+github_username:  xebiaww
+facebook_username:  XebiaIndia
+domain: xebiaww.github.io
+companyurl: "http://xebia.com"
+
+# Build settings
+markdown: redcarpet
+highlighter: pygments
+permalink: pretty
+
+paginate: 10
+paginate_path: "page:num"
+exclude: ["Dockerfile","less","node_modules","Gruntfile.js","package.json","README.md"]
+
+# List of Gems
+gems: ["emoji_for_jekyll"]

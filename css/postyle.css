@@ -1,0 +1,154 @@
+/**
+ * Font Faces
+ * --------------------------------------------------
+ */
+
+@font-face {
+  font-family: "Museosans300";
+  src: url(/css/fonts/museosans_300-webfont.woff);
+}
+
+@font-face {
+  font-family: "Museosans100";
+  src: url(/css/fonts/museosans_100-webfont.woff);
+}
+
+/**
+ * Main content layout styling
+ * --------------------------------------------------
+ */
+
+ #main_container {
+ 	margin-top: 15px;
+ }
+
+#main_container h1 {
+	font-family: "Museosans300";
+	font-size: 31px;
+	font-weight: 700;
+	line-height: 37px;
+	color: #6c1d5f;
+	padding-bottom: 10px;
+  border-bottom: solid 1px #e0e0e0;
+}
+
+#main_container h2,h3,h4,h5,h6 { 
+	font-family: "Museosans100";
+	color: #06a99c;
+	margin: 10px 0 10px 0;
+}
+
+#main_container .author-details {
+	font-family: "Museosans300";
+}
+
+#main_container .author-details span{
+	margin-bottom: 20px;
+}
+
+#main_container .author-details .post_comments_count{
+	color: #06a99c;
+	float: right;
+	border-bottom: 1px dotted;
+}
+
+#main_container .author-details a{
+	color: #06a99c;
+}
+
+#main_container img {
+	width: 100%;
+	margin: 25px 0 25px 0;
+}
+
+.emoji {
+	width: 20px !important;
+	height: 20px !important;
+	vertical-align: middle !important;
+}
+
+#main_container a {
+	color: #06a99c;
+}
+
+#main_container span {
+	font-family: "Museosans100";
+} 
+
+#main_container ol {
+	font-family: "Museosans100";
+	margin: 25px 0 25px 0;
+} 
+
+#main_container p {
+	font-family: "Museosans300";
+	font-style: normal;
+	margin: 15px 0 15px 0;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 210%;
+	letter-spacing: 1px;
+  word-spacing: 3px;
+	color: #000;
+}
+
+/**
+ * Main content shortcodes styling
+ * --------------------------------------------------
+ */
+
+#main_container pre {
+	padding: 35px;
+	color: #ddd;
+	border: none;
+	background: #333;
+    white-space: pre;
+    word-wrap: break-word;
+    overflow: auto;
+    border-radius: 4px;
+	position: relative;
+}
+
+#main_container pre::after {
+    content: "double click to select all";
+    padding: 0;
+    width: auto;
+    height: auto;
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 12px;
+    color: #ddd;
+    line-height: 20px;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+#main_container pre:hover::after {
+    opacity: 0;
+    visibility: visible;
+}
+
+#main_container pre code {
+	display: block;
+    margin: 20px 0 0 0;
+    padding: 15px 16px 14px;
+    border-top: 1px solid #555;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 19px;
+    color: #ddd;
+}
+
+#main_container pre span {
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+.highlight + pre + code {
+	white-space: pre-wrap;
+}
+
+#main_container code {
+    white-space: pre-wrap;
+}

@@ -1,0 +1,31 @@
+---
+layout: default
+title: Blogs by Author
+---
+<div class="container">
+    <div class="page-contents">
+        <h2 class="page-title first-elem"> Blog archive</h2>
+        <h3 class="page-subtitle">Posts by <span>{{ page.author }}</span></h3>
+
+        <ul id="ptitle-list">
+
+        {% for post in site.posts %}
+
+                {% if post.author == page.author %}
+
+                <li class="clearfix">
+                	<span class="date">{{ post.date | date_to_long_string }}</span>
+                	<span class="seperator">--</span>
+                    <a href="{{site.url}}{{ post.url }}"><h3 class="title">{{ post.title }}</h3></a>
+                </li>
+
+                {% endif %}
+            
+        {% endfor %}
+
+        </ul>
+
+
+
+    </div>
+</div>
