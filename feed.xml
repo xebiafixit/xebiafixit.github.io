@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xebia Blog</title>
+    <description>Bug/Error fixes</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 01 Sep 2015 12:51:18 +0530</pubDate>
+    <lastBuildDate>Tue, 01 Sep 2015 12:51:18 +0530</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Xcode Advance Debugging_tricks</title>
+        <description>&lt;h1&gt;Xcode Advance Debugging Technique&lt;/h1&gt;
+
+&lt;p&gt;This blog will enhance your in hand experience about most advance tricks for Debugging Xcode Projects. Required Xcode 6.0 Or above.&lt;/p&gt;
+
+&lt;h1&gt;Table of content&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#Introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#NSZombie&quot;&gt;NSZombie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Crash&quot;&gt;Crash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Crazy-Trick&quot;&gt;Crazy Trick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#More-Advance-Trick&quot;&gt;More Advance Trick&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a id=&quot;Introduction&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;I believe we are having a lot of fun on regular basis with scheduled iOS programming. This can also be  more interesting by adding more ways to Advance debugging technique.&lt;/p&gt;
+
+&lt;p&gt;Often we were working with conventional ways to debug our code using Xcode. However we didn’t  reached to any Advance technique in Xcode (Objective-C &amp;amp; Swift).I recently ran into a very tricky exception toward the tail end of a long fruitful day of programming for my project.  The only clue that I was given that there was any problem whatsoever was seeing the following statement where the program halted since I have a global breakpoint set up to halt on all exceptions:&lt;/p&gt;
+
+&lt;p&gt;EXC&lt;em&gt;BAD&lt;/em&gt;ACCESS&lt;/p&gt;
+
+&lt;p&gt;That’s not exactly the most inviting error to debug.  Needless to say I wasn’t entirely clear how to even extract more hints as to what was going on since I already output all of the exception details when they’re thrown (in this case there were none).  Additionally the stack trace was blank past the entry point to the application delegate – equally puzzling.  After some digging around on this vague exception, the conclusion being drawn was one of only two likely possibilities:&lt;/p&gt;
+
+&lt;p&gt;Accessing something uninitialized&lt;/p&gt;
+
+&lt;p&gt;Accessing something already released by ARC (memory garbage collection essentially).
+I felt above listed is a more common scenario.  Given that, I did some additional digging and stumbled upon a sneaky area within Xcode 6 project configurations that enables developers to squeeze more information out of the debugger in these scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;NSZombie&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;NSZombie&lt;/h2&gt;
+
+&lt;p&gt;Xcode 6 Memory Management Zombie ObjectsNavigate to the following area in your project: Product -&amp;gt; Scheme -&amp;gt; Edit Scheme -&amp;gt; Run Debug Section -&amp;gt; Diagnostics Section -&amp;gt; (Check) Enable Zombie Objects.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/XcodeAdvanceDebugging/NSZombie.png&quot; alt=&quot;Image&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;The zombie objects are basically a memory debugging tool we can take advantage of during development.  For more information, please check out Apple Documentation, as it gives a great explanation. This is one of the advance trick we are using so far.&lt;/p&gt;
+
+&lt;p&gt;However, Over the long time and by exploring many ways to find out Advance Debugging Technique, This have been reached to another advancement pinnacle with &lt;a href=&quot;https://developer.apple.com/videos/wwdc/2015/?id=413&quot;&gt;WWDC15 Session&lt;/a&gt;.
+There is super cool ad-ons to debugging trick i have worked so far.
+&lt;a id=&quot;Crash&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Crash&lt;/h2&gt;
+
+&lt;p&gt;To write it down this blog, I have created a sample Project having around Few types of different crashes that is horrible to identify, Moreover developer dread to way and dig more in order to pin nail.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample Code&lt;/strong&gt; &lt;a href=&quot;https://github.com/NitinGuptaXebia/BlogsSampleCode.git&quot;&gt;Download&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/XcodeAdvanceDebugging/Crash.png&quot; alt=&quot;Image&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;At a first look on real issues/errors, Click on the objc&lt;em&gt;exception&lt;/em&gt;throw in your Thread as shown above.&lt;/p&gt;
+
+&lt;p&gt;Yeah, As it realize that, this is all baffle. It’s more complex to understand and deal with.
+&lt;a id=&quot;Crazy-Trick&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Crazy Trick&lt;/h2&gt;
+
+&lt;p&gt;However this is where from the fun part starts. Simply go to your Debug console section and Type “po $arg1” and Press Enter. Wow you got something that is human readable version of error.
+“po $arg1” brief the Error/Exception first argument and that is what we were alway looking at. This details ways to an easy solutions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/XcodeAdvanceDebugging/Crash_Details.png&quot; alt=&quot;Image&quot;&gt;
+&lt;a id=&quot;More-Advance-Trick&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;More Advance Trick&lt;/h1&gt;
+
+&lt;p&gt;We can also add the &lt;strong&gt;“po $arg1”&lt;/strong&gt; command to our Exception Break point, So it would be like Automated debug log behavior for all exceptions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Steps :&lt;/strong&gt;
+1.Go to breakpoint Navigation.
+2.Create a breakpoint (+) at bottom left.
+3.Add Exception Break Point.
+4.Right Click on (All Exceptions) Breakpoint .
+5.Edit Breakpoint.
+6.Add Action.
+7.add &lt;strong&gt;“po $arg1”&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/XcodeAdvanceDebugging/Add_Exception_BreakPoint.png&quot; alt=&quot;Insert_image&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Run your code and Yeah that’s an easiest way to fix.&lt;/p&gt;
+
+&lt;p&gt;Have fun with debugging and deal with crashes.&lt;/p&gt;
+
+&lt;p&gt;You could also add few more action like : po $eax . That tells more about line causing exception and reason of exception.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 28 Aug 2015 00:00:00 +0530</pubDate>
+        <link>/2015/08/28/Xcode-Advance-Debugging_Tricks/</link>
+        <guid isPermaLink="true">/2015/08/28/Xcode-Advance-Debugging_Tricks/</guid>
+        
+        <category>iOS</category>
+        
+        <category>Xcode</category>
+        
+        <category>iPhone</category>
+        
+        <category>Advance debugging tricks</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
